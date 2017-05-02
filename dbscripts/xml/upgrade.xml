@@ -25,13 +25,15 @@
 	<upgrade minversion="2.4.0.0" maxversion="2.4.9.9">
 		<code function="syncSeriesAssocType" />
 		<data file="dbscripts/xml/upgrade/2.4.0_preupdate_usageStatistics.xml" condition="return $installer->columnExists('article_galleys', 'views');" />
-		<data file="dbscripts/xml/upgrade/2.4.0_preupdate_usageStatistics2.xml" condition="return $installer->tableExists('issue_galleys');" />
+		<data file="dbscripts/xml/upgrade/2.4.0_preupdate_usageStatistics2.xml" condition="return $installer->columnExists('issue_galleys', 'views');" />
 		<data file="dbscripts/xml/upgrade/3.0.0_preupdate.xml" condition="return $installer->columnExists('edit_decisions', 'article_id');" />	
 		<data file="dbscripts/xml/upgrade/3.0.0_adaptTimedViews.xml" condition="return $installer->tableExists('timed_views_log');" />
 		<data file="dbscripts/xml/upgrade/3.0.0_adaptReferrals.xml" condition="return $installer->tableExists('referrals');" />
 		<data file="dbscripts/xml/upgrade/3.0.0_adaptBooksForReview.xml" condition="return $installer->tableExists('books_for_review');" />
 		<data file="dbscripts/xml/upgrade/remove_timed_views_bots.xml" condition="return $installer->tableExists('timed_views_log');" />
 		<data file="dbscripts/xml/upgrade/3.0.0_preupdate_commentsToEditor.xml" condition="return $installer->columnExists('submissions', 'comments_to_ed');" />
+		<code function="concatenateIntoAbout" />
+		<code function="concatenateIntoMasthead" />
 	</upgrade>
 
 	<upgrade minversion="3.0.0.0" maxversion="3.0.1.9">
@@ -59,7 +61,6 @@
 	<schema file="lib/pkp/xml/schema/views.xml" />
 	<schema file="lib/pkp/xml/schema/genres.xml" />
 	<schema file="lib/pkp/xml/schema/gifts.xml" />
-	<schema file="lib/pkp/xml/schema/mutex.xml" />
 	<schema file="lib/pkp/xml/schema/tombstone.xml" />
 	<schema file="lib/pkp/xml/schema/rolesAndUserGroups.xml" />
 	<schema file="lib/pkp/xml/schema/metrics.xml" />
@@ -152,6 +153,7 @@
 	<upgrade minversion="2.4.0.0" maxversion="3.0.9.9">
 		<!--  the order of the next two lines is important -->
 		<code function="moveReviewerFiles" />
+		<code function="fixAuthorGroup" />
 		<data file="dbscripts/xml/upgrade/3.0.0_reviewer_files.xml" />
 		<code function="removeCancelledReviewAssignments" condition="return $installer->tableExists('review_assignments_tmp');" />
 		<data file="dbscripts/xml/upgrade/3.1.0_notes.xml" condition="return $installer->tableExists('notes_tmp');" />
