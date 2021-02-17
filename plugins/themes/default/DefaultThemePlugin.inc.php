@@ -101,6 +101,7 @@ class DefaultThemePlugin extends ThemePlugin {
 
 		// Load primary stylesheet
 		$this->addStyle('stylesheet', 'styles/index.less');
+		$this->addStyle('iopn', 'styles/iopn.css');
 
 		// Store additional LESS variables to process based on options
 		$additionalLessVariables = array();
